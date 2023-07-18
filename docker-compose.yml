@@ -1,0 +1,20 @@
+
+version: '3.10'
+services:
+  server:
+    image: vid-server
+    container_name: vid-server
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    # restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./backend:/app/server
